@@ -1,3 +1,0 @@
-pydrive
-google.colab
-oauth2client.client
