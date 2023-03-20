@@ -13,4 +13,4 @@ enableCORS = false\n\
 \n\
 " > ~/.streamlit/config.toml
 
-pip install pydrive
+pip install pydrive --no-cache-dir
