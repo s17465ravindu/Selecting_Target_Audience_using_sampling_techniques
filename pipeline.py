@@ -16,19 +16,6 @@ import numpy as np
 from sklearn.preprocessing import StandardScaler
 import random
 
-
-'''auth.authenticate_user()
-gauth = GoogleAuth()
-gauth.credentials = GoogleCredentials.get_application_default()
-drive = GoogleDrive(gauth)
-link = 'hhttps://docs.google.com/spreadsheets/d/1baKBXDs_PiIIYyUFmq0UOCBcMwq6DWji/edit?usp=sharing&ouid=100934670427194582945&rtpof=true&sd=true'
-id = '1baKBXDs_PiIIYyUFmq0UOCBcMwq6DWji'
-print (id)
-
-downloaded = drive.CreateFile({'id':id}) 
-downloaded.GetContentFile('sales_df_completed_uc.xlsx')  
-st_df1 = pd.read_excel('sales_df_completed_uc.xlsx')'''
-
 data = pd.read_csv('sales_df_completed_uc.csv')
 st_df1  = pd.DataFrame(data)
 
