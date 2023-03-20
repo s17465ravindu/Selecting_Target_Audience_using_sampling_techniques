@@ -8,15 +8,15 @@ Original file is located at
 """
 import pandas as pd
 import numpy as np
-from pydrive.auth import GoogleAuth
-from pydrive.drive import GoogleDrive
-from google.colab import auth
-from oauth2client.client import GoogleCredentials
+#from pydrive.auth import GoogleAuth
+#from pydrive.drive import GoogleDrive
+#from google.colab import auth
+#from oauth2client.client import GoogleCredentials
 from sklearn.preprocessing import StandardScaler
 import random
 
 
-auth.authenticate_user()
+'''auth.authenticate_user()
 gauth = GoogleAuth()
 gauth.credentials = GoogleCredentials.get_application_default()
 drive = GoogleDrive(gauth)
@@ -26,7 +26,10 @@ print (id)
 
 downloaded = drive.CreateFile({'id':id}) 
 downloaded.GetContentFile('sales_df_completed_uc.xlsx')  
-st_df1 = pd.read_excel('sales_df_completed_uc.xlsx')
+st_df1 = pd.read_excel('sales_df_completed_uc.xlsx')'''
+
+data = pd.read_csv('sales_df_completed_uc.csv')
+st_df1  = pd.DataFrame(data)
 
 st_df2= st_df1[st_df1['respond_to_discount'] == 1]
 
@@ -134,16 +137,3 @@ print("Sample sizes needed for 90%, 95%, and 99% confidence intervals:", sample_
 df = st_df2
 result_table = sampling_pipeline(df, sample_sizes)
 print(result_table)
-
-'''0  36
-1  115
-2  63
-3  178
-4  126
-5  101
-6  21
-7  197
-8  27
-9  230
-10 132
-11 77'''
