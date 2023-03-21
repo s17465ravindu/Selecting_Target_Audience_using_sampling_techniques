@@ -1,17 +1,26 @@
 
 import pandas as pd
 import numpy as np
-from sklearn.preprocessing import StandardScaler
 import random
+from sklearn.model_selection import train_test_split, StratifiedShuffleSplit
+import math
+import streamlit as st
 
-data = pd.read_csv('sales_df_completed_uc.csv')
-st_df1  = pd.DataFrame(data)
+#data = pd.read_csv('sales_df_completed_uc.csv')
+#st_df1  = pd.DataFrame(data)
 
+file = st.file_uploader("Upload CSV", type="csv")
+
+if file is not None:
+    # Use pandas to read the file contents into a DataFrame
+    data = pd.read_csv(file)
+    st_df1  = pd.DataFrame(data)
+    # Display the DataFrame on the app
+    st.write(data)
+    
 st_df2= st_df1[st_df1['respond_to_discount'] == 1]
 
 len(st_df2)
-
-from sklearn.model_selection import train_test_split, StratifiedShuffleSplit
 
 def simple_random_sampling(data, sample_sizes):
     samples = []
@@ -26,7 +35,8 @@ def simple_random_sampling(data, sample_sizes):
 
 def stratified_sampling(data, sample_sizes):
     samples = []
-    data['Customer_Strata'] = np.where(data['Gender_M'] == 1, 1, 0)
+    data.loc[data['Gender_M'] == 1, 'Customer_Strata'] = 1
+    data.loc[data['Gender_M'] != 1, 'Customer_Strata'] = 0
     split = StratifiedShuffleSplit(n_splits=1, random_state=42)
     population_mean = data['total_discount_received'].mean()
     for size in sample_sizes:
@@ -88,10 +98,9 @@ def sampling_pipeline(data, sample_sizes):
     train_set = srs_samples + str_samples + sys_samples + cls_samples
     df = pd.DataFrame(train_set, columns=['Sampling Technique', 'Sample Size', 'Absolute Error', 'Standard Error'])
     return df
-'''
+
 """### Calculate Sample Sizes ###"""
 
-import math
 
 # Set the given values
 z_scores = [1.645, 1.96, 2.576] # z-score values for 90%, 95%, and 99% confidence intervals
@@ -106,8 +115,8 @@ for z in z_scores:
     sample_size = math.ceil(sample_size) # Round up to the nearest integer
     sample_sizes.append(sample_size)
 
-print("Sample sizes needed for 90%, 95%, and 99% confidence intervals:", sample_sizes)
+#print("Sample sizes needed for 90%, 95%, and 99% confidence intervals:", sample_sizes)
 
 df = st_df2
 result_table = sampling_pipeline(df, sample_sizes)
-print(result_table)'''
+print(result_table)
