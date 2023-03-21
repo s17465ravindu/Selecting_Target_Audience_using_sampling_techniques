@@ -33,9 +33,8 @@ if file is not None:
 
     def stratified_sampling(data, sample_sizes):
         samples = []
-        data.loc[:, 'Customer_Strata'] = np.where(data['Gender_M'] == 1, 1, 0)
-        #data.loc[data['Gender_M'] == 1, 'Customer_Strata'] = 1
-        #data.loc[data['Gender_M'] != 1, 'Customer_Strata'] = 0
+        data.loc[data['Gender_M'] == 1, 'Customer_Strata'] = 1
+        data.loc[data['Gender_M'] != 1, 'Customer_Strata'] = 0
         split = StratifiedShuffleSplit(n_splits=1, random_state=42)
         population_mean = data['total_discount_received'].mean()
         for size in sample_sizes:
