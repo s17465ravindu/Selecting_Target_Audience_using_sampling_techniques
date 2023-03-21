@@ -31,7 +31,7 @@ if file is not None:
             samples.append(['Simple Random Sampling', size, srs_absolute_error, srs_se])
         return samples
 
-    def stratified_sampling(data, sample_sizes):
+    '''def stratified_sampling(data, sample_sizes):
         samples = []
         data.loc[data['Gender_M'] == 1, 'Customer_Strata'] = 1
         data.loc[data['Gender_M'] != 1, 'Customer_Strata'] = 0
@@ -44,7 +44,7 @@ if file is not None:
             str_se = np.std(str_sample['total_discount_received'], ddof=1) / np.sqrt(size)
             str_absolute_error = abs(population_mean - str_mean)
             samples.append(['Stratified Sampling', size, str_absolute_error, str_se])
-        return samples
+        return samples'''
 
     def systematic_sampling(data, sample_sizes):
         samples = []
@@ -88,7 +88,7 @@ if file is not None:
 
     def sampling_pipeline(data, sample_sizes):
         srs_samples = simple_random_sampling(data, sample_sizes)
-        str_samples = stratified_sampling(data, sample_sizes)
+        #str_samples = stratified_sampling(data, sample_sizes)
         sys_samples = systematic_sampling(data, sample_sizes)
         cls_samples = cluster_sampling(data, sample_sizes)
 
