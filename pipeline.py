@@ -18,87 +18,87 @@ if file is not None:
     # Display the DataFrame on the app
     st.write(data)
     
-st_df2= st_df1[st_df1['respond_to_discount'] == 1]
+    st_df2= st_df1[st_df1['respond_to_discount'] == 1]
 
-len(st_df2)
+    len(st_df2)
 
-def simple_random_sampling(data, sample_sizes):
-    samples = []
-    population_mean = data['total_discount_received'].mean()
-    for size in sample_sizes:
-        srs_sample = data.sample(size, random_state=42)
-        srs_mean = srs_sample['total_discount_received'].mean()
-        srs_se = np.std(srs_sample['total_discount_received'], ddof=1) / np.sqrt(size)
-        srs_absolute_error = abs(population_mean - srs_mean)
-        samples.append(['Simple Random Sampling', size, srs_absolute_error, srs_se])
-    return samples
+    def simple_random_sampling(data, sample_sizes):
+        samples = []
+        population_mean = data['total_discount_received'].mean()
+        for size in sample_sizes:
+            srs_sample = data.sample(size, random_state=42)
+            srs_mean = srs_sample['total_discount_received'].mean()
+            srs_se = np.std(srs_sample['total_discount_received'], ddof=1) / np.sqrt(size)
+            srs_absolute_error = abs(population_mean - srs_mean)
+            samples.append(['Simple Random Sampling', size, srs_absolute_error, srs_se])
+        return samples
 
-def stratified_sampling(data, sample_sizes):
-    samples = []
-    data['Customer_Strata'] = np.where(data['Gender_M'] == 1, 1, 0)
-    #data.loc[data['Gender_M'] == 1, 'Customer_Strata'] = 1
-    #data.loc[data['Gender_M'] != 1, 'Customer_Strata'] = 0
-    split = StratifiedShuffleSplit(n_splits=1, random_state=42)
-    population_mean = data['total_discount_received'].mean()
-    for size in sample_sizes:
-        for train_index, test_index in split.split(data, data['Customer_Strata']):
-            str_sample = data.iloc[test_index].sort_values(by='cust_id').head(size)
-        str_mean = str_sample['total_discount_received'].mean()
-        str_se = np.std(str_sample['total_discount_received'], ddof=1) / np.sqrt(size)
-        str_absolute_error = abs(population_mean - str_mean)
-        samples.append(['Stratified Sampling', size, str_absolute_error, str_se])
-    return samples
+    def stratified_sampling(data, sample_sizes):
+        samples = []
+        data['Customer_Strata'] = np.where(data['Gender_M'] == 1, 1, 0)
+        #data.loc[data['Gender_M'] == 1, 'Customer_Strata'] = 1
+        #data.loc[data['Gender_M'] != 1, 'Customer_Strata'] = 0
+        split = StratifiedShuffleSplit(n_splits=1, random_state=42)
+        population_mean = data['total_discount_received'].mean()
+        for size in sample_sizes:
+            for train_index, test_index in split.split(data, data['Customer_Strata']):
+                str_sample = data.iloc[test_index].sort_values(by='cust_id').head(size)
+            str_mean = str_sample['total_discount_received'].mean()
+            str_se = np.std(str_sample['total_discount_received'], ddof=1) / np.sqrt(size)
+            str_absolute_error = abs(population_mean - str_mean)
+            samples.append(['Stratified Sampling', size, str_absolute_error, str_se])
+        return samples
 
-def systematic_sampling(data, sample_sizes):
-    samples = []
-    population_mean = data['total_discount_received'].mean()
-    for size in sample_sizes:
-        step = len(data) // size
-        start = np.random.randint(0, step)
-        indices = np.arange(start, len(data), step)
-        sys_sample = data.iloc[indices]
-        sys_mean = sys_sample['total_discount_received'].mean()
-        sys_se = np.std(sys_sample['total_discount_received'], ddof=1) / np.sqrt(size)
-        sys_absolute_error = abs(population_mean - sys_mean)
-        samples.append(['Systematic Sampling', size, sys_absolute_error, sys_se])
-    return samples
+    def systematic_sampling(data, sample_sizes):
+        samples = []
+        population_mean = data['total_discount_received'].mean()
+        for size in sample_sizes:
+            step = len(data) // size
+            start = np.random.randint(0, step)
+            indices = np.arange(start, len(data), step)
+            sys_sample = data.iloc[indices]
+            sys_mean = sys_sample['total_discount_received'].mean()
+            sys_se = np.std(sys_sample['total_discount_received'], ddof=1) / np.sqrt(size)
+            sys_absolute_error = abs(population_mean - sys_mean)
+            samples.append(['Systematic Sampling', size, sys_absolute_error, sys_se])
+        return samples
 
-def cluster_sampling(data,sample_sizes):
-  samples = []
-  cluster1=data.loc[data['Region_Midwest'] == 1]
-  cluster2=data.loc[data['Region_Northeast'] == 1]
-  cluster3=data.loc[data['Region_South'] == 1]
-  cluster4=data.loc[data['Region_West'] == 1]
+    def cluster_sampling(data,sample_sizes):
+        samples = []
+        cluster1=data.loc[data['Region_Midwest'] == 1]
+        cluster2=data.loc[data['Region_Northeast'] == 1]
+        cluster3=data.loc[data['Region_South'] == 1]
+        cluster4=data.loc[data['Region_West'] == 1]
 
-  clusters = []
-  clusters.append(cluster1)
-  clusters.append(cluster2)
-  clusters.append(cluster3)
-  clusters.append(cluster4)
+        clusters = []
+        clusters.append(cluster1)
+        clusters.append(cluster2)
+        clusters.append(cluster3)
+        clusters.append(cluster4)
 
-  random.seed(42)
-  selected_cluster = random.choice(clusters)
-  population_mean = data['total_discount_received'].mean()
+        random.seed(42)
+        selected_cluster = random.choice(clusters)
+        population_mean = data['total_discount_received'].mean()
 
-  for size in sample_sizes:
-    cluster_sample = selected_cluster.sample(size, random_state=42)
-    cluster_mean = cluster_sample['total_discount_received'].mean()
-    cluster_se = np.std(cluster_sample['total_discount_received'], ddof=1) / np.sqrt(size)
-    cluster_absolute_error = abs(population_mean - cluster_mean)
-    samples.append(['Cluster Sampling', size, cluster_absolute_error, cluster_se])
-  return samples
+        for size in sample_sizes:
+            cluster_sample = selected_cluster.sample(size, random_state=42)
+            cluster_mean = cluster_sample['total_discount_received'].mean()
+            cluster_se = np.std(cluster_sample['total_discount_received'], ddof=1) / np.sqrt(size)
+            cluster_absolute_error = abs(population_mean - cluster_mean)
+            samples.append(['Cluster Sampling', size, cluster_absolute_error, cluster_se])
+        return samples
     
 
-def sampling_pipeline(data, sample_sizes):
-    srs_samples = simple_random_sampling(data, sample_sizes)
-    str_samples = stratified_sampling(data, sample_sizes)
-    sys_samples = systematic_sampling(data, sample_sizes)
-    cls_samples = cluster_sampling(data, sample_sizes)
+    def sampling_pipeline(data, sample_sizes):
+        srs_samples = simple_random_sampling(data, sample_sizes)
+        str_samples = stratified_sampling(data, sample_sizes)
+        sys_samples = systematic_sampling(data, sample_sizes)
+        cls_samples = cluster_sampling(data, sample_sizes)
 
-    # Combine results into DataFrame
-    train_set = srs_samples + str_samples + sys_samples + cls_samples
-    df = pd.DataFrame(train_set, columns=['Sampling Technique', 'Sample Size', 'Absolute Error', 'Standard Error'])
-    return df
+        # Combine results into DataFrame
+        train_set = srs_samples + str_samples + sys_samples + cls_samples
+        df = pd.DataFrame(train_set, columns=['Sampling Technique', 'Sample Size', 'Absolute Error', 'Standard Error'])
+        return df
 
 """### Calculate Sample Sizes ###"""
 
