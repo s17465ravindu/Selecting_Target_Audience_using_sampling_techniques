@@ -101,21 +101,21 @@ if file is not None:
 """### Calculate Sample Sizes ###"""
 
 
-# Set the given values
-z_scores = [1.645, 1.96, 2.576] # z-score values for 90%, 95%, and 99% confidence intervals
-margin_of_error = 0.05
-population_proportion = 0.5
-population_size = 9521
+    # Set the given values
+    z_scores = [1.645, 1.96, 2.576] # z-score values for 90%, 95%, and 99% confidence intervals
+    margin_of_error = 0.05
+    population_proportion = 0.5
+    population_size = 9521
 
-# Calculate the sample size for each confidence interval
-sample_sizes = []
-for z in z_scores:
-    sample_size = (((z**2) * population_proportion * (1 - population_proportion)) / (margin_of_error**2)) / (1+ ((z**2) * population_proportion * (1 - population_proportion))/((margin_of_error**2)*population_size))
-    sample_size = math.ceil(sample_size) # Round up to the nearest integer
-    sample_sizes.append(sample_size)
+    # Calculate the sample size for each confidence interval
+    sample_sizes = []
+    for z in z_scores:
+        sample_size = (((z**2) * population_proportion * (1 - population_proportion)) / (margin_of_error**2)) / (1+ ((z**2) * population_proportion * (1 - population_proportion))/((margin_of_error**2)*population_size))
+        sample_size = math.ceil(sample_size) # Round up to the nearest integer
+        sample_sizes.append(sample_size)
 
-#print("Sample sizes needed for 90%, 95%, and 99% confidence intervals:", sample_sizes)
+    #print("Sample sizes needed for 90%, 95%, and 99% confidence intervals:", sample_sizes)
 
-df = st_df2
-result_table = sampling_pipeline(df, sample_sizes)
-print(result_table)
+    df = st_df2
+    result_table = sampling_pipeline(df, sample_sizes)
+    print(result_table)
