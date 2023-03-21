@@ -87,7 +87,7 @@ if file is not None:
         return samples
     
 
-    def sampling_pipeline(data, sample_sizes):
+    def sampling_pipeline(data, sample_sizes,confidence_intervals):
         srs_samples = simple_random_sampling(data, sample_sizes)
         str_samples = stratified_sampling(data, sample_sizes)
         sys_samples = systematic_sampling(data, sample_sizes)
@@ -95,13 +95,14 @@ if file is not None:
 
         # Combine results into DataFrame
         train_set = srs_samples  + sys_samples + cls_samples + str_samples
-        df = pd.DataFrame(train_set, columns=['Sampling Technique', 'Sample Size', 'Absolute Error', 'Standard Error'])
+        df = pd.DataFrame(train_set, columns=['Sampling Technique','Confidence Interval', 'Sample Size', 'Absolute Error', 'Standard Error'])
         
         return df
 
 
     # Calculate the sample size for each confidence interval
     sample_sizes = []
+    confidence_intervals =['90%','95%','99%']
     # Set the given values
     z_scores = [1.645, 1.96, 2.576] # z-score values for 90%, 95%, and 99% confidence intervals
     margin_of_error = 0.05
@@ -116,5 +117,5 @@ if file is not None:
     #print("Sample sizes needed for 90%, 95%, and 99% confidence intervals:", sample_sizes)
 
     df = st_df2
-    result_table = sampling_pipeline(df, sample_sizes)
+    result_table = sampling_pipeline(df, sample_sizes,confidence_intervals)
     st.write(result_table)
