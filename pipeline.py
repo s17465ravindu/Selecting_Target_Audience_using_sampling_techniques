@@ -97,16 +97,17 @@ if file is not None:
         train_set = srs_samples + str_samples + sys_samples + cls_samples
         df = pd.DataFrame(train_set, columns=['Sampling Technique', 'Sample Size', 'Absolute Error', 'Standard Error'])
         
-        # Set the given values
-        z_scores = [1.645, 1.96, 2.576] # z-score values for 90%, 95%, and 99% confidence intervals
-        margin_of_error = 0.05
-        population_proportion = 0.5
-        population_size = len(df) #9521
         return df
 
 
     # Calculate the sample size for each confidence interval
     sample_sizes = []
+    # Set the given values
+    z_scores = [1.645, 1.96, 2.576] # z-score values for 90%, 95%, and 99% confidence intervals
+    margin_of_error = 0.05
+    population_proportion = 0.5
+    population_size = len(df) #9521
+    
     for z in z_scores:
         sample_size = (((z**2) * population_proportion * (1 - population_proportion)) / (margin_of_error**2)) / (1+ ((z**2) * population_proportion * (1 - population_proportion))/((margin_of_error**2)*population_size))
         sample_size = math.ceil(sample_size) # Round up to the nearest integer
