@@ -31,20 +31,21 @@ if file is not None:
             samples.append(['Simple Random Sampling', size, srs_absolute_error, srs_se])
         return samples
 
-    '''def stratified_sampling(data, sample_sizes):
+    def stratified_sampling(data, sample_sizes):
+        data2 = data
         samples = []
-        data.loc[data['Gender_M'] == 1, 'Customer_Strata'] = 1
-        data.loc[data['Gender_M'] != 1, 'Customer_Strata'] = 0
+        data2.loc[data2['Gender_M'] == 1, 'Customer_Strata'] = 1
+        data2.loc[data2['Gender_M'] != 1, 'Customer_Strata'] = 0
         split = StratifiedShuffleSplit(n_splits=1, random_state=42)
         population_mean = data['total_discount_received'].mean()
         for size in sample_sizes:
-            for train_index, test_index in split.split(data, data['Customer_Strata']):
-                str_sample = data.iloc[test_index].sort_values(by='cust_id').head(size)
+            for train_index, test_index in split.split(data2, data2['Customer_Strata']):
+                str_sample = data2.iloc[test_index].sort_values(by='cust_id').head(size)
             str_mean = str_sample['total_discount_received'].mean()
             str_se = np.std(str_sample['total_discount_received'], ddof=1) / np.sqrt(size)
             str_absolute_error = abs(population_mean - str_mean)
             samples.append(['Stratified Sampling', size, str_absolute_error, str_se])
-        return samples '''
+        return samples 
 
     def systematic_sampling(data, sample_sizes):
         samples = []
@@ -93,7 +94,7 @@ if file is not None:
         cls_samples = cluster_sampling(data, sample_sizes)
 
         # Combine results into DataFrame
-        train_set = srs_samples  + sys_samples + cls_samples #+ str_samples
+        train_set = srs_samples  + sys_samples + cls_samples + str_samples
         df = pd.DataFrame(train_set, columns=['Sampling Technique', 'Sample Size', 'Absolute Error', 'Standard Error'])
         
         return df
@@ -116,5 +117,4 @@ if file is not None:
 
     df = st_df2
     result_table = sampling_pipeline(df, sample_sizes)
-    print(result_table)
     st.write(result_table)
