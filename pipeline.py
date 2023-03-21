@@ -87,7 +87,7 @@ if file is not None:
         return samples
     
 
-    def sampling_pipeline(data, sample_sizes,confidence_intervals):
+    def sampling_pipeline(data, sample_sizes):
         srs_samples = simple_random_sampling(data, sample_sizes)
         str_samples = stratified_sampling(data, sample_sizes)
         sys_samples = systematic_sampling(data, sample_sizes)
@@ -117,5 +117,5 @@ if file is not None:
     #print("Sample sizes needed for 90%, 95%, and 99% confidence intervals:", sample_sizes)
 
     df = st_df2
-    result_table = sampling_pipeline(df, sample_sizes,confidence_intervals)
+    result_table = sampling_pipeline(df, sample_sizes)
     st.write(result_table)
