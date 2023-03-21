@@ -95,7 +95,7 @@ if file is not None:
 
         # Combine results into DataFrame
         train_set = srs_samples  + sys_samples + cls_samples + str_samples
-        df = pd.DataFrame(train_set, columns=['Sampling Technique','Confidence Interval', 'Sample Size', 'Absolute Error', 'Standard Error'])
+        df = pd.DataFrame(train_set, columns=['Sampling Technique', 'Sample Size', 'Absolute Error', 'Standard Error'])
         
         return df
 
