@@ -106,7 +106,7 @@ if file is not None:
     z_scores = [1.645, 1.96, 2.576] # z-score values for 90%, 95%, and 99% confidence intervals
     margin_of_error = 0.05
     population_proportion = 0.5
-    population_size = len(df) #9521
+    population_size = len(st_df2) #9521
     
     for z in z_scores:
         sample_size = (((z**2) * population_proportion * (1 - population_proportion)) / (margin_of_error**2)) / (1+ ((z**2) * population_proportion * (1 - population_proportion))/((margin_of_error**2)*population_size))
