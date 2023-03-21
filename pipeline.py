@@ -44,7 +44,7 @@ if file is not None:
             str_se = np.std(str_sample['total_discount_received'], ddof=1) / np.sqrt(size)
             str_absolute_error = abs(population_mean - str_mean)
             samples.append(['Stratified Sampling', size, str_absolute_error, str_se])
-        return samples'''
+        return samples '''
 
     def systematic_sampling(data, sample_sizes):
         samples = []
@@ -93,7 +93,7 @@ if file is not None:
         cls_samples = cluster_sampling(data, sample_sizes)
 
         # Combine results into DataFrame
-        train_set = srs_samples + str_samples + sys_samples + cls_samples
+        train_set = srs_samples  + sys_samples + cls_samples #+ str_samples
         df = pd.DataFrame(train_set, columns=['Sampling Technique', 'Sample Size', 'Absolute Error', 'Standard Error'])
         
         return df
