@@ -117,3 +117,4 @@ if file is not None:
     df = st_df2
     result_table = sampling_pipeline(df, sample_sizes)
     print(result_table)
+    st.write(result_table)
