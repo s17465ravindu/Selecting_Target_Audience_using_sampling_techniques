@@ -89,7 +89,7 @@ if file is not None:
 
     def sampling_pipeline(data, sample_sizes):
         srs_samples = simple_random_sampling(data, sample_sizes)
-        #str_samples = stratified_sampling(data, sample_sizes)
+        str_samples = stratified_sampling(data, sample_sizes)
         sys_samples = systematic_sampling(data, sample_sizes)
         cls_samples = cluster_sampling(data, sample_sizes)
 
