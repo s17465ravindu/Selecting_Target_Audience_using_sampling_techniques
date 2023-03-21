@@ -18,9 +18,9 @@ if file is not None:
     # Display the DataFrame on the app
     st.write(data)
     
-    st_df2= st_df1[st_df1['respond_to_discount'] == 1]
+        st_df2= st_df1[st_df1['respond_to_discount'] == 1]
 
-    len(st_df2)
+        len(st_df2)
 
     def simple_random_sampling(data, sample_sizes):
         samples = []
