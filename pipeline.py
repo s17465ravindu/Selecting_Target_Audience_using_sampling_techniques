@@ -24,7 +24,8 @@ if file is not None:
         samples = []
         population_mean = data['total_discount_received'].mean()
         for size in sample_sizes:
-            srs_sample = data.sample(size, random_state=42)
+            indices = random.sample(range(len(data)),size)
+            srs_sample = data.iloc[indices]
             srs_mean = srs_sample['total_discount_received'].mean()
             srs_se = np.std(srs_sample['total_discount_received'], ddof=1) / np.sqrt(size)
             srs_absolute_error = abs(population_mean - srs_mean)
