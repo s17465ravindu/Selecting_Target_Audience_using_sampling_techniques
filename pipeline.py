@@ -36,9 +36,10 @@ if file is not None:
         samples = []
         data2.loc[data2['Gender_M'] == 1, 'Customer_Strata'] = 1
         data2.loc[data2['Gender_M'] != 1, 'Customer_Strata'] = 0
-        split = StratifiedShuffleSplit(n_splits=1, random_state=42)
+        
         population_mean = data['total_discount_received'].mean()
         for size in sample_sizes:
+            split = StratifiedShuffleSplit(n_splits=1, test_size=size)
             for train_index, test_index in split.split(data2, data2['Customer_Strata']):
                 str_sample = data2.iloc[test_index].sort_values(by='cust_id').head(size)
             str_mean = str_sample['total_discount_received'].mean()
