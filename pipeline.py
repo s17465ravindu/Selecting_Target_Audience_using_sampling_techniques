@@ -100,9 +100,9 @@ if file is not None:
         # Combine results into DataFrame
         train_set = srs_samples  + sys_samples + cls_samples + str_samples
         df = pd.DataFrame(train_set, columns=['Sampling Technique', 'Sample Size', 'Absolute Error', 'Standard Error'])
-        
-        return df
         st.write(train_set)
+        return df
+        
 
 
     # Calculate the sample size for each confidence interval
