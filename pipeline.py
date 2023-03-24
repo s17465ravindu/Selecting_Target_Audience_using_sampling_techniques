@@ -19,7 +19,7 @@ if file is not None:
     #st.write(data)
     
     st_df2 = st_df1[st_df1['respond_to_discount'] == 1]
-    st.write(len(st_df2)
+    st.write(len(st_df2))
     np.random.seed(42)
     def simple_random_sampling(data, sample_sizes):
         samples = []
