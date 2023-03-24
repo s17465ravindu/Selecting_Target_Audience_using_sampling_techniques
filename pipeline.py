@@ -51,6 +51,7 @@ if file is not None:
         return samples 
 
     def systematic_sampling(data, sample_sizes):
+        np.random.seed(42)
         samples = []
         for size in sample_sizes:
             step = len(data) // size
@@ -59,7 +60,8 @@ if file is not None:
             indices = np.arange(start, len(data), step)
             sys_sample = data.iloc[indices]
             sys_mean = sys_sample['total_discount_received'].mean()
-            sys_se = np.std(sys_sample['total_discount_received'], ddof=1) / np.sqrt(size)
+            sys_sd = np.std(sys_sample['total_discount_received'], ddof=1) 
+            sys_se = sys_sd / np.sqrt(size)
             sys_absolute_error = abs(population_mean - sys_mean)
             samples.append(['Systematic Sampling', size, sys_absolute_error, sys_se])
         return samples
