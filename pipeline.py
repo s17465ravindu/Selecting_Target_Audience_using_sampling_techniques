@@ -44,9 +44,9 @@ if file is not None:
             split = StratifiedShuffleSplit(n_splits=1, test_size=size)
             for x, y in split.split(data2, data2['Customer_Strata']):
                 str_sample = data2.iloc[y].sort_values(by='cust_id')
-                str_mean = str_sample['total_discount_received'].mean()
-                str_se = np.std(str_sample['total_discount_received'], ddof=1) / np.sqrt(size)
-                str_absolute_error = abs(population_mean - str_mean)
+            str_mean = str_sample['total_discount_received'].mean()
+            str_se = np.std(str_sample['total_discount_received'], ddof=1) / np.sqrt(size)
+            str_absolute_error = abs(population_mean - str_mean)
             samples.append(['Stratified Sampling', size, str_absolute_error, str_se])
         return samples 
 
