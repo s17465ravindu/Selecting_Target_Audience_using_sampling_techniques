@@ -20,9 +20,9 @@ if file is not None:
     
     st_df2 = st_df1[st_df1['respond_to_discount'] == 1]
     population_mean = st_df2['total_discount_received'].mean()
-    np.random.seed(42)
     
     def simple_random_sampling(data, sample_sizes):
+        np.random.seed(42)
         samples = []
         for size in sample_sizes:
             indices = random.sample(range(len(data)),size)
@@ -100,7 +100,6 @@ if file is not None:
         # Combine results into DataFrame
         train_set = srs_samples  + sys_samples + cls_samples + str_samples
         df = pd.DataFrame(train_set, columns=['Sampling Technique', 'Sample Size', 'Absolute Error', 'Standard Error'])
-        st.write(train_set)
         return df
         
 
