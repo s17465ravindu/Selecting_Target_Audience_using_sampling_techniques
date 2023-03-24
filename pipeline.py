@@ -23,7 +23,7 @@ if file is not None:
     np.random.seed(42)
     
     def simple_random_sampling(data, sample_sizes):
-        samples = []
+        sr_samples = []
         for size in sample_sizes:
             indices = random.sample(range(len(data)),size)
             srs_sample = data.iloc[indices]
@@ -32,11 +32,11 @@ if file is not None:
             srs_se = srs_sd / np.sqrt(size)
             srs_absolute_error = abs(population_mean - srs_mean)
             samples.append(['Simple Random Sampling', size, srs_absolute_error, srs_se])
-        return samples
+        return sr_samples
 
     def stratified_sampling(data, sample_sizes):
         data2 = data
-        samples = []
+        st_samples = []
         data2.loc[data2['Gender_M'] == 1, 'Customer_Strata'] = 1
         data2.loc[data2['Gender_M'] != 1, 'Customer_Strata'] = 0
         
@@ -48,11 +48,11 @@ if file is not None:
             str_se = np.std(str_sample['total_discount_received'], ddof=1) / np.sqrt(size)
             str_absolute_error = abs(population_mean - str_mean)
             samples.append(['Stratified Sampling', size, str_absolute_error, str_se])
-        return samples 
+        return st_samples 
 
     def systematic_sampling(data, sample_sizes):
         np.random.seed(42)
-        samples = []
+        sy_samples = []
         for size in sample_sizes:
             step = len(data) // size
             step = math.ceil(step)
@@ -64,10 +64,10 @@ if file is not None:
             sys_se = sys_sd / np.sqrt(size)
             sys_absolute_error = abs(population_mean - sys_mean)
             samples.append(['Systematic Sampling', size, sys_absolute_error, sys_se])
-        return samples
+        return sy_samples
 
     def cluster_sampling(data,sample_sizes):
-        samples = []
+        cl_samples = []
         cluster1=data.loc[data['Region_Midwest'] == 1]
         cluster2=data.loc[data['Region_Northeast'] == 1]
         cluster3=data.loc[data['Region_South'] == 1]
@@ -88,7 +88,7 @@ if file is not None:
             cluster_se = np.std(cluster_sample['total_discount_received'], ddof=1) / np.sqrt(size)
             cluster_absolute_error = abs(population_mean - cluster_mean)
             samples.append(['Cluster Sampling', size, cluster_absolute_error, cluster_se])
-        return samples
+        return cl_samples
     
 
     def sampling_pipeline(data, sample_sizes):
@@ -99,6 +99,7 @@ if file is not None:
 
         # Combine results into DataFrame
         train_set = srs_samples  + sys_samples + cls_samples + str_samples
+        st.write(train_set)
         df = pd.DataFrame(train_set, columns=['Sampling Technique', 'Sample Size', 'Absolute Error', 'Standard Error'])
         
         return df
