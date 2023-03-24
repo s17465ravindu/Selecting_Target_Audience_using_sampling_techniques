@@ -19,16 +19,17 @@ if file is not None:
     #st.write(data)
     
     st_df2 = st_df1[st_df1['respond_to_discount'] == 1]
-    st.write(len(st_df2))
+    population_mean = st_df2['total_discount_received'].mean()
     np.random.seed(42)
+    
     def simple_random_sampling(data, sample_sizes):
         samples = []
-        population_mean = data['total_discount_received'].mean()
         for size in sample_sizes:
             indices = random.sample(range(len(data)),size)
             srs_sample = data.iloc[indices]
             srs_mean = srs_sample['total_discount_received'].mean()
-            srs_se = np.std(srs_sample['total_discount_received'], ddof=1) / np.sqrt(size)
+            srs_sd = np.std(srs_sample['total_discount_received'], ddof=1) 
+            srs_se = srs_sd / np.sqrt(size)
             srs_absolute_error = abs(population_mean - srs_mean)
             samples.append(['Simple Random Sampling', size, srs_absolute_error, srs_se])
         return samples
@@ -39,7 +40,6 @@ if file is not None:
         data2.loc[data2['Gender_M'] == 1, 'Customer_Strata'] = 1
         data2.loc[data2['Gender_M'] != 1, 'Customer_Strata'] = 0
         
-        population_mean = data['total_discount_received'].mean()
         for size in sample_sizes:
             split = StratifiedShuffleSplit(n_splits=1, test_size=size)
             for train_index, test_index in split.split(data2, data2['Customer_Strata']):
@@ -52,7 +52,6 @@ if file is not None:
 
     def systematic_sampling(data, sample_sizes):
         samples = []
-        population_mean = data['total_discount_received'].mean()
         for size in sample_sizes:
             step = len(data) // size
             start = np.random.randint(0, step)
@@ -79,7 +78,6 @@ if file is not None:
 
         random.seed(42)
         selected_cluster = random.choice(clusters)
-        population_mean = data['total_discount_received'].mean()
 
         for size in sample_sizes:
             cluster_sample = selected_cluster.sample(size, random_state=42)
