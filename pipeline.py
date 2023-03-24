@@ -82,7 +82,8 @@ if file is not None:
         selected_cluster = random.choice(clusters)
 
         for size in sample_sizes:
-            cluster_sample = selected_cluster.sample(size, random_state=42)
+            indices = random.sample(range(len(selected_cluster)), size)
+            cluster_sample = selected_cluster.iloc[indices]
             cluster_mean = cluster_sample['total_discount_received'].mean()
             cluster_se = np.std(cluster_sample['total_discount_received'], ddof=1) / np.sqrt(size)
             cluster_absolute_error = abs(population_mean - cluster_mean)
