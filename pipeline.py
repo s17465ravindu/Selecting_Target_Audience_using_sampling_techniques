@@ -55,9 +55,8 @@ if file is not None:
         samples = []
         for size in sample_sizes:
             step = len(data) // size
-            step = math.ceil(step)
             start = np.random.randint(0, step)
-            indices = np.arange(start, len(data), step)
+            indices = np.arange(start, len(data), step = step)
             sys_sample = data.iloc[indices]
             sys_mean = sys_sample['total_discount_received'].mean()
             sys_sd = np.std(sys_sample['total_discount_received'], ddof=1) 
