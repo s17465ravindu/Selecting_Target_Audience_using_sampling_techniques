@@ -20,6 +20,7 @@ if file is not None:
     
     st_df2 = st_df1[st_df1['respond_to_discount'] == 1]
     population_mean = st_df2['total_discount_received'].mean()
+    st.write(population_mean)
     np.random.seed(42)
     
     def simple_random_sampling(data, sample_sizes):
