@@ -8,7 +8,7 @@ import math
 import streamlit as st
 
 st.set_page_config(layout="wide")
-st.title('Identify Target Audience using sampling techniques')
+st.title('Identify Target Audience Using Sampling Techniques')
 #data = pd.read_csv('sales_df_completed_uc.csv')
 #st_df1  = pd.DataFrame(data)
 
@@ -18,11 +18,15 @@ if file is not None:
     # Use pandas to read the file contents into a DataFrame
     data = pd.read_csv(file)
     st_df1  = pd.DataFrame(data)
-    # Display the DataFrame on the app
-    #st.write(data)
     
     st_df2 = st_df1[st_df1['respond_to_discount'] == 1]
     population_mean = st_df2['total_discount_received'].mean()
+    
+    st.markdown("")
+    see_data = st.expander('You can click here to see the dataset first 👉')
+    with see_data:
+        st.dataframe(data=st_df2)
+    st.text('')
     
     def simple_random_sampling(data, sample_sizes):
         np.random.seed(42)
