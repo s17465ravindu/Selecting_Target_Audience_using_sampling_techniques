@@ -24,7 +24,7 @@ if file is not None:
     def simple_random_sampling(data, sample_sizes):
         np.random.seed(42)
         samples = []
-        for size in sample_sizes:
+        for size,confidence_interval in sample_sizes:
             indices = random.sample(range(len(data)),size)
             srs_sample = data.iloc[indices]
             srs_mean = srs_sample['total_discount_received'].mean()
@@ -41,7 +41,7 @@ if file is not None:
         data2.loc[data2['Gender_M'] == 1, 'Customer_Strata'] = 1
         data2.loc[data2['Gender_M'] != 1, 'Customer_Strata'] = 0
         
-        for size in sample_sizes:
+        for size,confidence_interval in sample_sizes:
             split = StratifiedShuffleSplit(n_splits=1, test_size=size)
             for x, y in split.split(data2, data2['Customer_Strata']):
                 str_sample = data2.iloc[y].sort_values(by='cust_id')
@@ -54,7 +54,7 @@ if file is not None:
     def systematic_sampling(data, sample_sizes):
         np.random.seed(42)
         samples = []
-        for size in sample_sizes:
+        for size,confidence_interval in sample_sizes:
             step = len(data) // size
             start = np.random.randint(0, step)
             indices = np.arange(start, len(data), step = step)
@@ -82,7 +82,7 @@ if file is not None:
         random.seed(42)
         selected_cluster = random.choice(clusters)
 
-        for size in sample_sizes:
+        for size,confidence_interval in sample_sizes:
             indices = random.sample(range(len(selected_cluster)), size)
             cluster_sample = selected_cluster.iloc[indices]
             cluster_mean = cluster_sample['total_discount_received'].mean()
@@ -107,17 +107,16 @@ if file is not None:
 
     # Calculate the sample size for each confidence interval
     sample_sizes = []
-    confidence_intervals =['90%','95%','99%']
     # Set the given values
-    z_scores = [1.645, 1.96, 2.576] # z-score values for 90%, 95%, and 99% confidence intervals
+    z_scores = [(1.645, '90%'), (1.96, '95%'), (2.576, '99%')]
     margin_of_error = 0.05
     population_proportion = 0.5
     population_size = len(st_df2) #9521
     
-    for z in z_scores:
+    for z, confidence_interval in z_scores:
         sample_size = (((z**2) * population_proportion * (1 - population_proportion)) / (margin_of_error**2)) / (1+ ((z**2) * population_proportion * (1 - population_proportion))/((margin_of_error**2)*population_size))
         sample_size = math.ceil(sample_size) # Round up to the nearest integer
-        sample_sizes.append(sample_size)
+        sample_sizes.append((sample_size, confidence_interval))
 
     #print("Sample sizes needed for 90%, 95%, and 99% confidence intervals:", sample_sizes)
 
