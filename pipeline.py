@@ -63,7 +63,7 @@ if file is not None:
             sys_sd = np.std(sys_sample['total_discount_received'], ddof=1) 
             sys_se = sys_sd / np.sqrt(size)
             sys_absolute_error = abs(population_mean - sys_mean)
-            samples.append(['Systematic Sampling', size,confidence_interval, sys_absolute_error, sys_se])
+            samples.append(['Systematic Sampling',confidence_interval, size, sys_absolute_error, sys_se])
         return samples
 
     def cluster_sampling(data,sample_sizes):
@@ -88,7 +88,7 @@ if file is not None:
             cluster_mean = cluster_sample['total_discount_received'].mean()
             cluster_se = np.std(cluster_sample['total_discount_received'], ddof=1) / np.sqrt(size)
             cluster_absolute_error = abs(population_mean - cluster_mean)
-            samples.append(['Cluster Sampling', size,confidence_interval, cluster_absolute_error, cluster_se])
+            samples.append(['Cluster Sampling', confidence_interval,size, cluster_absolute_error, cluster_se])
         return samples
     
 
