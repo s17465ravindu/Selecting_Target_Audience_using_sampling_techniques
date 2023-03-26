@@ -6,6 +6,7 @@ from sklearn.model_selection import train_test_split, StratifiedShuffleSplit
 import math
 import streamlit as st
 
+st.title('Identify Target Audience using sampling techniques')
 #data = pd.read_csv('sales_df_completed_uc.csv')
 #st_df1  = pd.DataFrame(data)
 
