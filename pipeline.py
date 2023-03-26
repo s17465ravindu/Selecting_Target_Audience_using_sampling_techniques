@@ -28,6 +28,18 @@ if file is not None:
         st.dataframe(data=st_df2)
     st.text('')
     
+    st.subheader("General Information about Dataset")
+    row2_spacer1, row2_1, row2_spacer2, row2_2, row2_spacer3, row2_3, row2_spacer4, row2_4, row2_spacer5   = st.columns((.2, 1.6, .2, 1.6, .2, 1.6, .2, 1.6, .2))
+    
+    with row2_1:
+        Completed_Orders_in_df = st_df1.cust_id.nunique()
+        Completed_Orders = "✅" + str(Completed_Orders_in_df) + " Customers"
+        st.markdown(Completed_Orders)
+    with row2_2:
+        Responded_to_discount_in_df = st_df2.cust_id.nunique()
+        Responded_to_discount_df = "👍" + str(Responded_to_discount_in_df) + " Customers"
+        st.markdown(Responded_to_discount_df)
+    
     agree = st.checkbox('Apply Sampling Techniques')
 
     if agree:
