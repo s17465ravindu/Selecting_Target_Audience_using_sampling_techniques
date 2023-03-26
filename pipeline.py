@@ -31,7 +31,7 @@ if file is not None:
             srs_sd = np.std(srs_sample['total_discount_received'], ddof=1) 
             srs_se = srs_sd / np.sqrt(size)
             srs_absolute_error = abs(population_mean - srs_mean)
-            samples.append(['Simple Random Sampling', size, srs_absolute_error, srs_se])
+            samples.append(['Simple Random Sampling',confidence_interval, size, srs_absolute_error, srs_se])
         return samples
 
     def stratified_sampling(data, sample_sizes):
@@ -48,7 +48,7 @@ if file is not None:
                 str_mean = str_sample['total_discount_received'].mean()
                 str_se = np.std(str_sample['total_discount_received'], ddof=1) / np.sqrt(size)
                 str_absolute_error = abs(population_mean - str_mean)
-            samples.append(['Stratified Sampling', size, str_absolute_error, str_se])
+            samples.append(['Stratified Sampling',confidence_interval, size, str_absolute_error, str_se])
         return samples 
 
     def systematic_sampling(data, sample_sizes):
@@ -63,7 +63,7 @@ if file is not None:
             sys_sd = np.std(sys_sample['total_discount_received'], ddof=1) 
             sys_se = sys_sd / np.sqrt(size)
             sys_absolute_error = abs(population_mean - sys_mean)
-            samples.append(['Systematic Sampling', size, sys_absolute_error, sys_se])
+            samples.append(['Systematic Sampling', size,confidence_interval, sys_absolute_error, sys_se])
         return samples
 
     def cluster_sampling(data,sample_sizes):
@@ -88,7 +88,7 @@ if file is not None:
             cluster_mean = cluster_sample['total_discount_received'].mean()
             cluster_se = np.std(cluster_sample['total_discount_received'], ddof=1) / np.sqrt(size)
             cluster_absolute_error = abs(population_mean - cluster_mean)
-            samples.append(['Cluster Sampling', size, cluster_absolute_error, cluster_se])
+            samples.append(['Cluster Sampling', size,confidence_interval, cluster_absolute_error, cluster_se])
         return samples
     
 
@@ -100,8 +100,7 @@ if file is not None:
 
         # Combine results into DataFrame
         train_set = srs_samples  + sys_samples + cls_samples + str_samples
-        df = pd.DataFrame(train_set, columns=['Sampling Technique', 'Sample Size', 'Absolute Error', 'Standard Error'])
-        st.write(train_set)
+        df = pd.DataFrame(train_set, columns=['Sampling Technique','Confidence Interval','Sample Size', 'Absolute Error', 'Standard Error'])
         return df
         
 
