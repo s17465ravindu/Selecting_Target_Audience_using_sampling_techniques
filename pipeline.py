@@ -9,6 +9,7 @@ import math
 import streamlit as st
 import EDA
 
+EDA.test
 st.set_page_config(layout="wide")
 st.title('Identify Target Audience Using Sampling Techniques')
 #data = pd.read_csv('sales_df_completed_uc.csv')
