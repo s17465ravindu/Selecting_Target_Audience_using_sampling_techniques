@@ -96,7 +96,7 @@ if file is not None:
             return samples
             
 
-       def cluster_sampling(data,sample_sizes):
+       def cluster_sampling(data, sample_sizes)
             
             columns_to_drop = ['cust_id', 'E Mail', 'cluster', 'cluster_Cat', 'status', 'category', 'payment_method']
             st_df3 = data.drop(columns_to_drop, axis=1)
