@@ -36,7 +36,7 @@ if file is not None:
         Completed_Orders = "✅ Completed Orders: " +  str(Completed_Orders_in_df) + " Customers"
         st.markdown(Completed_Orders)
     with row2_2:
-        Responded_to_discount_in_df = st_df2.cust_id.nunique()
+        Responded_to_discount_in_df = st_df1.cust_id.nunique()
         Responded_to_discount_df = "👍 Responded to Discount: " + str(Responded_to_discount_in_df) + " Customers"
         st.markdown(Responded_to_discount_df)
         
