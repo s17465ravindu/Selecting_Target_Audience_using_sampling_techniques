@@ -2,4 +2,3 @@ scikit-learn
 numpy
 scipy
 pandas
-urllib
