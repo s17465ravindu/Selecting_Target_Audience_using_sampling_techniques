@@ -8,6 +8,8 @@ from sklearn.cluster import KMeans
 import math
 import streamlit as st
 import os
+from PIL import Image
+
 
 
 st.set_page_config(layout="wide")
