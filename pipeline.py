@@ -14,12 +14,12 @@ st.title('Identify Target Audience Using Sampling Techniques')
 #st_df1  = pd.DataFrame(data)
 
 def clustering_dataset(data):
-        columns_to_drop = [ 'cust_id','E Mail']
-        st_df3 = data.drop(columns_to_drop, axis=1)
+        columns_to_drop = [ 'cust_id','E Mail','cluster','cluster_Cat']
+        st_df2 = data.drop(columns_to_drop, axis=1)
         kmeans = KMeans(n_clusters=6, init = 'k-means++', random_state = 0)
-        y_kmeans = kmeans.fit_predict(st_df3)
-        st_df3['cluster'] = kmeans.labels_
-        return st_df3
+        y_kmeans = kmeans.fit_predict(st_df2)
+        st_df2['cluster'] = kmeans.labels_
+        return st_df2
 
 file = st.file_uploader("Upload CSV", type="csv")
 
