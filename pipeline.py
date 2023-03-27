@@ -37,10 +37,10 @@ if file is not None:
         no_of_var_df = "🔢 No of Variables: " + str(36) 
         st.markdown(no_of_var_df)
     with row2_3:
-        res_to_discount = "🤑Response Rate for Discount : " + str(27.34%) 
+        res_to_discount = "🤑Response Rate for Discount : " + str(27.34) +"%"
         st.markdown(res_to_discount)
     with row2_4:
-        red_rate = "🛍️ Redemption Rate: " + str(59.77%) 
+        red_rate = "🛍️ Redemption Rate: " + str(59.77) + "%"
         st.markdown(red_rate)
         
         
