@@ -43,10 +43,8 @@ if file is not None:
         red_rate = "🛍️ Redemption Rate: " + str(59.77) + "%"
         st.markdown(red_rate)
         
-        
-    #with row3_1:
      
-    #st.sidebar.title("Findings")
+    st.sidebar.title("Findings")
     #type_of_finding = st.sidebar.selectbox("Select one",('EDA', 'Clustering', 'Sampling Techniques'))   
         
     
