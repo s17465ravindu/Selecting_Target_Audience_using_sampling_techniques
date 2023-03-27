@@ -11,7 +11,7 @@ import streamlit as st
 
 #main data set
 
-sales_dataset df = pd.read_csv('https://file.io/qKuEgBVdse5m')
+sales_dataset = pd.read_csv('https://file.io/qKuEgBVdse5m')
 
 st.set_page_config(layout="wide")
 st.title('Identify Target Audience Using Sampling Techniques')
