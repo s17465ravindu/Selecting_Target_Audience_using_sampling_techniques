@@ -21,6 +21,9 @@ if file is not None:
     
     population_mean = st_df1['total_discount_received'].mean()
     
+    st.sidebar.title("Findings")
+    type_of_finding = st.sidebar.selectbox("Select one",('EDA', 'Clustering', 'Sampling Techniques'))   
+    
     st.markdown("")
     see_data = st.expander('You can click here to see the dataset first 👉')
     with see_data:
@@ -44,8 +47,7 @@ if file is not None:
         st.markdown(red_rate)
         
      
-    st.sidebar.title("Findings")
-    type_of_finding = st.sidebar.selectbox("Select one",('EDA', 'Clustering', 'Sampling Techniques'))   
+    
         
     
     agree = st.checkbox('Apply Sampling Techniques')
