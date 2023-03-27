@@ -45,7 +45,7 @@ if file is not None:
         
      
     st.sidebar.title("Findings")
-    #type_of_finding = st.sidebar.selectbox("Select one",('EDA', 'Clustering', 'Sampling Techniques'))   
+    type_of_finding = st.sidebar.selectbox("Select one",('EDA', 'Clustering', 'Sampling Techniques'))   
         
     
     agree = st.checkbox('Apply Sampling Techniques')
