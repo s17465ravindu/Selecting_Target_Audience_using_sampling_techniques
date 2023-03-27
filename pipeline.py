@@ -20,13 +20,12 @@ if file is not None:
     data = pd.read_csv(file)
     st_df1  = pd.DataFrame(data)
     
-    st_df2 = st_df1[st_df1['respond_to_discount'] == 1]
     population_mean = st_df2['total_discount_received'].mean()
     
     st.markdown("")
     see_data = st.expander('You can click here to see the dataset first 👉')
     with see_data:
-        st.dataframe(data=st_df2)
+        st.dataframe(data=st_df1)
     st.text('')
     
     st.subheader("General Information about Dataset")
@@ -97,19 +96,11 @@ if file is not None:
             
 
         def cluster_sampling(data, sample_sizes):
-
-            columns_to_drop = ['cust_id', 'E Mail', 'cluster', 'cluster_Cat', 'status', 'category', 'payment_method']
-            st_df3 = data.drop(columns_to_drop, axis=1)
-
-            kmeans = KMeans(n_clusters=6, init='k-means++', random_state=0)
-            y_kmeans = kmeans.fit_predict(st_df3)
-            st_df3['cluster'] = kmeans.labels_
-
             samples = []
 
-            cluster1=st_df3.loc[st_df3['cluster'] == 0]
-            cluster2=st_df3.loc[st_df3['cluster'] == 1]
-            cluster3=st_df3.loc[st_df3['cluster'] == 3]
+            cluster1=data.loc[data['cluster'] == 0]
+            cluster2=data.loc[data['cluster'] == 1]
+            cluster3=data.loc[data['cluster'] == 3]
 
             clusters = []
             clusters.append(cluster1)
@@ -157,7 +148,7 @@ if file is not None:
 
         #print("Sample sizes needed for 90%, 95%, and 99% confidence intervals:", sample_sizes)
 
-        df = st_df2
+        df = st_df1
         result_table = sampling_pipeline(df, sample_sizes)
         #st.write(result_table)
         st.table(result_table)
