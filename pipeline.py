@@ -7,6 +7,7 @@ from sklearn.model_selection import train_test_split, StratifiedShuffleSplit
 from sklearn.cluster import KMeans
 import math
 import streamlit as st
+import os
 
 
 st.set_page_config(layout="wide")
@@ -46,9 +47,23 @@ if file is not None:
         red_rate = "🛍️ Redemption Rate: " + str(59.77) + "%"
         st.markdown(red_rate)
         
-     
+     if type_of_finding == 'EDA':
+
+        folder_path = 'content'
+        file_names = os.listdir(folder_path)
+
+        md_files = [f for f in file_names if f.endswith('.md')]
+
+        selected_file = st.sidebar.selectbox('Select an MD file', md_files)
+
+        with open(os.path.join(folder_path, selected_file), 'r') as f:
+            file_contents = f.read()
+
+
+        st.write(file_contents)
+    else:
+        st.write('No MD files available for this option.')
     
-        
     
     agree = st.checkbox('Apply Sampling Techniques')
 
