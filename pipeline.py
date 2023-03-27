@@ -10,14 +10,11 @@ import math
 import streamlit as st
 
 #main data set
-#url = "https://www.dropbox.com/s/r20nh6xean1kurq/sales.csv"
-#response = urllib.request.urlopen(url)
-#sales_dataset = response.read()
+
+sales_dataset df = pd.read_csv('https://file.io/qKuEgBVdse5m')
 
 st.set_page_config(layout="wide")
 st.title('Identify Target Audience Using Sampling Techniques')
-#data = pd.read_csv('sales_df_completed_uc.csv')
-#st_df1  = pd.DataFrame(data)
 
 file = st.file_uploader("Upload CSV", type="csv")
 
@@ -37,14 +34,14 @@ if file is not None:
     st.subheader("General Information about Dataset")
     row2_spacer1, row2_1, row2_spacer2, row2_2, row2_spacer3, row2_3, row2_spacer4, row2_4, row2_spacer5   = st.columns((.2, 1.6, .2, 1.6, .2, 1.6, .2, 1.6, .2))
 
-    #with row2_1:
-      #  tot_records = sales_dataset.shape[0]
-      #  Total_Records = "📉 No of Records: " +  str(tot_records) + " Records"
-       # st.markdown(Total_Records)
-    #with row2_2:
-    #    no_of_variables_in_df = len(sales_dataset.columns)
-     #   no_of_var_df = "🔢 No of Variables: " + str(no_of_variables_in_df) + " Variables"
-       # st.markdown(no_of_var_df)
+    with row2_1:
+        tot_records = sales_dataset.shape[0]
+        Total_Records = "📉 No of Records: " +  str(tot_records) + " Records"
+        st.markdown(Total_Records)
+    with row2_2:
+        no_of_variables_in_df = len(sales_dataset.columns)
+        no_of_var_df = "🔢 No of Variables: " + str(no_of_variables_in_df) + " Variables"
+        st.markdown(no_of_var_df)
         
     #with row3_1:
      
