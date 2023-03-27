@@ -7,6 +7,7 @@ from sklearn.model_selection import train_test_split, StratifiedShuffleSplit
 from sklearn.cluster import KMeans
 import math
 import streamlit as st
+import EDA
 
 st.set_page_config(layout="wide")
 st.title('Identify Target Audience Using Sampling Techniques')
