@@ -4,6 +4,7 @@ import pandas as pd
 import numpy as np
 import random
 from sklearn.model_selection import train_test_split, StratifiedShuffleSplit
+from sklearn.cluster import KMeans
 import math
 import streamlit as st
 
