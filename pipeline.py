@@ -12,6 +12,14 @@ st.title('Identify Target Audience Using Sampling Techniques')
 #data = pd.read_csv('sales_df_completed_uc.csv')
 #st_df1  = pd.DataFrame(data)
 
+def clustering_dataset(data)
+    columns_to_drop = [ 'cust_id','E Mail']
+    st_df3 = st_df2.drop(columns_to_drop, axis=1)
+    kmeans = KMeans(n_clusters=6, init = 'k-means++', random_state = 0)
+    y_kmeans = kmeans.fit_predict(st_df3)
+    st_df3['cluster'] = kmeans.labels_
+    return st_df3
+
 file = st.file_uploader("Upload CSV", type="csv")
 
 if file is not None:
@@ -90,16 +98,16 @@ if file is not None:
 
         def cluster_sampling(data,sample_sizes):
             samples = []
-            cluster1=data.loc[data['Region_Midwest'] == 1]
-            cluster2=data.loc[data['Region_Northeast'] == 1]
-            cluster3=data.loc[data['Region_South'] == 1]
-            cluster4=data.loc[data['Region_West'] == 1]
+            data2 =  clustering_dataset(data)
+            cluster1=data2.loc[data2['cluster'] == 0]
+            cluster2=data2.loc[data2['cluster'] == 1]
+            cluster3=data2.loc[data2['cluster'] == 3]
 
             clusters = []
             clusters.append(cluster1)
             clusters.append(cluster2)
             clusters.append(cluster3)
-            clusters.append(cluster4)
+
 
             random.seed(42)
             selected_cluster = random.choice(clusters)
