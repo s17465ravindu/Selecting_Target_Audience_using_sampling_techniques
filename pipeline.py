@@ -20,7 +20,7 @@ if file is not None:
     data = pd.read_csv(file)
     st_df1  = pd.DataFrame(data)
     
-    population_mean = st_df2['total_discount_received'].mean()
+    population_mean = st_df1['total_discount_received'].mean()
     
     st.markdown("")
     see_data = st.expander('You can click here to see the dataset first 👉')
