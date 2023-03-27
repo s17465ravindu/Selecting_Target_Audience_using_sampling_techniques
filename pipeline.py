@@ -49,7 +49,7 @@ if file is not None:
         
      if type_of_finding == 'EDA':
 
-        folder_path = 'content'
+        folder_path = 'content/'
         file_names = os.listdir(folder_path)
 
         md_files = [f for f in file_names if f.endswith('.md')]
