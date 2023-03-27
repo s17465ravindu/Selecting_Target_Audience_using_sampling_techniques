@@ -61,9 +61,15 @@ if file is not None:
 
        st.write(file_contents)
     
-       if 'selected_file.png' in file_contents:
-           image_path = os.path.join('EDA Plots/', 'selected_file.png')
-           st.image(image_path)
+       img_folder_path = 'EDA plots'
+       img_file_name = os.path.splitext(selected_file)[0] + '.png'
+       img_path = os.path.join(img_folder_path, img_file_name)
+        
+       if os.path.isfile(img_path):
+           img = Image.open(img_path)
+           st.image(img, caption=img_file_name)
+       else:
+           st.write("No corresponding image file found.")
         
     elif type_of_finding == 'Clustering':
        st.write('No MD files available for this option.')
