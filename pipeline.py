@@ -59,7 +59,6 @@ if file is not None:
         with open(os.path.join(folder_path, selected_file), 'r') as f:
             file_contents = f.read()
 
-
         st.write(file_contents)
     else:
         st.write('No MD files available for this option.')
