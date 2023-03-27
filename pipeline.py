@@ -94,15 +94,16 @@ if file is not None:
                 sys_absolute_error = abs(population_mean - sys_mean)
                 samples.append(['Systematic Sampling',confidence_interval, size, sys_absolute_error, sys_se])
             return samples
+        
+        def clustering_dataset(data):
+            columns_to_drop = [ 'cust_id','E Mail','cluster','cluster_Cat','status','category','payment_method']
+            st_df3 = data.drop(columns_to_drop, axis=1)
+            kmeans = KMeans(n_clusters=6, init = 'k-means++', random_state = 0)
+            y_kmeans = kmeans.fit_predict(st_df3)
+            data['cluster'] = kmeans.labels_
+            return data
 
         def cluster_sampling(data,sample_sizes):
-            def clustering_dataset(data):
-                columns_to_drop = [ 'cust_id','E Mail','cluster','cluster_Cat','status','category','payment_method']
-                st_df3 = data.drop(columns_to_drop, axis=1)
-                kmeans = KMeans(n_clusters=6, init = 'k-means++', random_state = 0)
-                y_kmeans = kmeans.fit_predict(st_df3)
-                data['cluster'] = kmeans.labels_
-                return data
         
             samples = []
             data2 =  clustering_dataset(data)
