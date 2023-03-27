@@ -6,13 +6,13 @@ import random
 from sklearn.model_selection import train_test_split, StratifiedShuffleSplit
 from sklearn.cluster import KMeans
 import math
-import urllib.request
+#import urllib.request
 import streamlit as st
 
 #main data set
-url = "https://www.dropbox.com/s/r20nh6xean1kurq/sales.csv"
-response = urllib.request.urlopen(url)
-sales_dataset = response.read()
+#url = "https://www.dropbox.com/s/r20nh6xean1kurq/sales.csv"
+#response = urllib.request.urlopen(url)
+#sales_dataset = response.read()
 
 st.set_page_config(layout="wide")
 st.title('Identify Target Audience Using Sampling Techniques')
@@ -37,14 +37,14 @@ if file is not None:
     st.subheader("General Information about Dataset")
     row2_spacer1, row2_1, row2_spacer2, row2_2, row2_spacer3, row2_3, row2_spacer4, row2_4, row2_spacer5   = st.columns((.2, 1.6, .2, 1.6, .2, 1.6, .2, 1.6, .2))
 
-    with row2_1:
-        tot_records = sales_dataset.shape[0]
-        Total_Records = "📉 No of Records: " +  str(tot_records) + " Records"
-        st.markdown(Total_Records)
-    with row2_2:
-        no_of_variables_in_df = len(sales_dataset.columns)
-        no_of_var_df = "🔢 No of Variables: " + str(no_of_variables_in_df) + " Variables"
-        st.markdown(no_of_var_df)
+    #with row2_1:
+      #  tot_records = sales_dataset.shape[0]
+      #  Total_Records = "📉 No of Records: " +  str(tot_records) + " Records"
+       # st.markdown(Total_Records)
+    #with row2_2:
+    #    no_of_variables_in_df = len(sales_dataset.columns)
+     #   no_of_var_df = "🔢 No of Variables: " + str(no_of_variables_in_df) + " Variables"
+       # st.markdown(no_of_var_df)
         
     #with row3_1:
      
