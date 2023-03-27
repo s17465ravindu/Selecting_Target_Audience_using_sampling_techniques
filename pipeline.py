@@ -51,8 +51,8 @@ if file is not None:
         
     with row3_1:
      
-    st.sidebar.title("Findings")
-    type_of_finding = st.sidebar.selectbox("Select one",('EDA', 'Clustering', 'Sampling Techniques'))   
+    #st.sidebar.title("Findings")
+    #type_of_finding = st.sidebar.selectbox("Select one",('EDA', 'Clustering', 'Sampling Techniques'))   
         
     
     agree = st.checkbox('Apply Sampling Techniques')
