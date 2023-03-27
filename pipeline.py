@@ -15,7 +15,7 @@ st.title('Identify Target Audience Using Sampling Techniques')
 
 st.sidebar.title("Findings")
 
-type_of_finding = st.sidebar.selectbox("Select one",('EDA', 'Clustering', 'Sampling Techniques))
+type_of_finding = st.sidebar.selectbox("Select one",('EDA', 'Clustering', 'Sampling Techniques'))
 
 def clustering_dataset(data):
         columns_to_drop = [ 'cust_id','E Mail','cluster','cluster_Cat']
