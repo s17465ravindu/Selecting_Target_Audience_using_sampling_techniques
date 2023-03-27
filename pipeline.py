@@ -139,7 +139,7 @@ if file is not None:
         z_scores = [(1.645, '90%'), (1.96, '95%'), (2.576, '99%')]
         margin_of_error = 0.05
         population_proportion = 0.5
-        population_size = len(st_df2) #9521
+        population_size = len(st_df1) #9521
 
         for z, confidence_interval in z_scores:
             sample_size = (((z**2) * population_proportion * (1 - population_proportion)) / (margin_of_error**2)) / (1+ ((z**2) * population_proportion * (1 - population_proportion))/((margin_of_error**2)*population_size))
