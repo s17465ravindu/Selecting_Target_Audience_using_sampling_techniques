@@ -22,9 +22,6 @@ if file is not None:
     
     population_mean = st_df1['total_discount_received'].mean()
     
-    st.sidebar.title("Findings")
-    type_of_finding = st.sidebar.selectbox("Select one",('EDA', 'Clustering', 'Sampling Techniques'))   
-    
     st.markdown("")
     see_data = st.expander('You can click here to see the dataset first 👉')
     with see_data:
@@ -47,21 +44,22 @@ if file is not None:
         red_rate = "🛍️ Redemption Rate: " + str(59.77) + "%"
         st.markdown(red_rate)
         
-     if type_of_finding == 'EDA':
+    st.sidebar.title("Findings")
+    type_of_finding = st.sidebar.selectbox("Select one",('EDA', 'Clustering', 'Sampling Techniques'))   
+        
+    if type_of_finding == 'EDA':
 
-        folder_path = 'content/'
-        file_names = os.listdir(folder_path)
+       folder_path = 'content/'
+       file_names = os.listdir(folder_path)
+       md_files = [f for f in file_names if f.endswith('.md')]
+       selected_file = st.sidebar.selectbox('Select an MD file', md_files)
 
-        md_files = [f for f in file_names if f.endswith('.md')]
+       with open(os.path.join(folder_path, selected_file), 'r') as f:
+           file_contents = f.read()
 
-        selected_file = st.sidebar.selectbox('Select an MD file', md_files)
-
-        with open(os.path.join(folder_path, selected_file), 'r') as f:
-            file_contents = f.read()
-
-        st.write(file_contents)
+       st.write(file_contents)
     else:
-        st.write('No MD files available for this option.')
+       st.write('No MD files available for this option.')
     
     
     agree = st.checkbox('Apply Sampling Techniques')
