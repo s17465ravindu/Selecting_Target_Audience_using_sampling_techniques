@@ -96,7 +96,7 @@ if file is not None:
             return samples
             
 
-        def cluster_sampling(data,sample_sizes):
+       ''' def cluster_sampling(data,sample_sizes):
             
             columns_to_drop = ['cust_id','E Mail','cluster','cluster_Cat','status','category','payment_method']
             st_df3 = data.drop(columns_to_drop, axis=1)
@@ -125,7 +125,30 @@ if file is not None:
                 cluster_se = np.std(cluster_sample['total_discount_received'], ddof=1) / np.sqrt(size)
                 cluster_absolute_error = abs(population_mean - cluster_mean)
                 samples.append(['Cluster Sampling', confidence_interval,size, cluster_absolute_error, cluster_se])
-            return samples
+            return samples'''
+    
+        def cluster_sampling(data, sample_sizes):
+        columns_to_drop = ['cust_id', 'E Mail', 'cluster', 'cluster_Cat', 'status', 'category', 'payment_method']
+        st_df3 = data.drop(columns_to_drop, axis=1)
+
+        kmeans = KMeans(n_clusters=6, init='k-means++', random_state=0)
+        y_kmeans = kmeans.fit_predict(st_df3)
+        st_df3['cluster'] = kmeans.labels_
+
+        samples = []
+
+        for size, confidence_interval in sample_sizes:
+            clusters = [st_df3.loc[st_df3['cluster'] == i] for i in range(kmeans.n_clusters)]
+            selected_cluster = random.choice(clusters)
+
+            indices = random.sample(range(len(selected_cluster)), size)
+            cluster_sample = selected_cluster.iloc[indices]
+            cluster_mean = cluster_sample['total_discount_received'].mean()
+            cluster_se = np.std(cluster_sample['total_discount_received'], ddof=1) / np.sqrt(size)
+            cluster_absolute_error = abs(population_mean - cluster_mean)
+            samples.append(['Cluster Sampling', confidence_interval, size, cluster_absolute_error, cluster_se])
+
+        return samples
 
 
         def sampling_pipeline(data, sample_sizes):
