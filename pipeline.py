@@ -19,7 +19,7 @@ def clustering_dataset(data):
         kmeans = KMeans(n_clusters=6, init = 'k-means++', random_state = 0)
         y_kmeans = kmeans.fit_predict(st_df3)
         st_df3['cluster'] = kmeans.labels_
-        return st_df3
+     return st_df3
 
 file = st.file_uploader("Upload CSV", type="csv")
 
