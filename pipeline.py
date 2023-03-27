@@ -61,7 +61,7 @@ if file is not None:
 
        st.write(file_contents)
     
-       img_folder_path = 'EDA plots'
+       img_folder_path = 'EDA Plots/'
        img_file_name = os.path.splitext(selected_file)[0] + '.png'
        img_path = os.path.join(img_folder_path, img_file_name)
         
