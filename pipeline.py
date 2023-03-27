@@ -13,10 +13,6 @@ st.title('Identify Target Audience Using Sampling Techniques')
 #data = pd.read_csv('sales_df_completed_uc.csv')
 #st_df1  = pd.DataFrame(data)
 
-st.sidebar.title("Findings")
-
-type_of_finding = st.sidebar.selectbox("Select one",('EDA', 'Clustering', 'Sampling Techniques'))
-
 def clustering_dataset(data):
         columns_to_drop = [ 'cust_id','E Mail','cluster','cluster_Cat']
         st_df2 = data.drop(columns_to_drop, axis=1)
@@ -54,7 +50,9 @@ if file is not None:
         st.markdown(Responded_to_discount_df)
         
     with row3_1:
-        
+     
+    st.sidebar.title("Findings")
+    type_of_finding = st.sidebar.selectbox("Select one",('EDA', 'Clustering', 'Sampling Techniques'))   
         
     
     agree = st.checkbox('Apply Sampling Techniques')
