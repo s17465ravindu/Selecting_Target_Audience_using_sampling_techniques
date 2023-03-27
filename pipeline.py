@@ -13,6 +13,10 @@ st.title('Identify Target Audience Using Sampling Techniques')
 #data = pd.read_csv('sales_df_completed_uc.csv')
 #st_df1  = pd.DataFrame(data)
 
+st.sidebar.title("Findings")
+
+type_of_finding = st.sidebar.selectbox("Select one",('EDA', 'Clustering', 'Sampling Techniques))
+
 def clustering_dataset(data):
         columns_to_drop = [ 'cust_id','E Mail','cluster','cluster_Cat']
         st_df2 = data.drop(columns_to_drop, axis=1)
@@ -39,7 +43,7 @@ if file is not None:
     
     st.subheader("General Information about Dataset")
     row2_spacer1, row2_1, row2_spacer2, row2_2, row2_spacer3, row2_3, row2_spacer4, row2_4, row2_spacer5   = st.columns((.2, 1.6, .2, 1.6, .2, 1.6, .2, 1.6, .2))
-    
+
     with row2_1:
         Completed_Orders_in_df = st_df1.cust_id.nunique()
         Completed_Orders = "✅ Completed Orders: " +  str(Completed_Orders_in_df) + " Customers"
@@ -48,6 +52,9 @@ if file is not None:
         Responded_to_discount_in_df = st_df2.cust_id.nunique()
         Responded_to_discount_df = "👍 Responded to Discount: " + str(Responded_to_discount_in_df) + " Customers"
         st.markdown(Responded_to_discount_df)
+        
+    with row3_1:
+        
         
     
     agree = st.checkbox('Apply Sampling Techniques')
