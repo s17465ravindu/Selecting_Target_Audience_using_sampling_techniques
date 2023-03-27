@@ -28,26 +28,28 @@ if file is not None:
         st.dataframe(data=st_df1)
     st.text('')
     
-    st.subheader("General Information about Dataset")
-    row2_spacer1, row2_1, row2_spacer2, row2_2, row2_spacer3, row2_3, row2_spacer4, row2_4, row2_spacer5   = st.columns((.2, 1.6, .2, 1.6, .2, 1.6, .2, 1.6, .2))
-
-    with row2_1:
-        Total_Records = "📉 No of Records: " +  str(286392) 
-        st.markdown(Total_Records)
-    with row2_2:
-        no_of_var_df = "🔢 No of Variables: " + str(36) 
-        st.markdown(no_of_var_df)
-    with row2_3:
-        res_to_discount = "🤑Response Rate for Discount : " + str(27.34) +"%"
-        st.markdown(res_to_discount)
-    with row2_4:
-        red_rate = "🛍️ Redemption Rate: " + str(59.77) + "%"
-        st.markdown(red_rate)
+    
         
     st.sidebar.title("Findings")
     type_of_finding = st.sidebar.selectbox("Select one",('EDA', 'Clustering', 'Sampling Techniques'))   
         
     if type_of_finding == 'EDA':
+        
+       st.subheader("General Information about Dataset")
+       row2_spacer1, row2_1, row2_spacer2, row2_2, row2_spacer3, row2_3, row2_spacer4, row2_4, row2_spacer5   = st.columns((.2, 1.6, .2, 1.6, .2, 1.6, .2, 1.6, .2))
+
+       with row2_1:
+           Total_Records = "📉 No of Records: " +  str(286392) 
+           st.markdown(Total_Records)
+       with row2_2:
+           no_of_var_df = "🔢 No of Variables: " + str(36) 
+           st.markdown(no_of_var_df)
+       with row2_3:
+           res_to_discount = "🤑Response Rate for Discount : " + str(27.34) +"%"
+           st.markdown(res_to_discount)
+       with row2_4:
+           red_rate = "🛍️ Redemption Rate: " + str(59.77) + "%"
+           st.markdown(red_rate)
 
        folder_path = 'content/'
        file_names = os.listdir(folder_path)
