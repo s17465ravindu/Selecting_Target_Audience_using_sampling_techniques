@@ -31,11 +31,18 @@ if file is not None:
     row2_spacer1, row2_1, row2_spacer2, row2_2, row2_spacer3, row2_3, row2_spacer4, row2_4, row2_spacer5   = st.columns((.2, 1.6, .2, 1.6, .2, 1.6, .2, 1.6, .2))
 
     with row2_1:
-        Total_Records = "📉 No of Records: " +  str(286392) + " Records"
+        Total_Records = "📉 No of Records: " +  str(286392) 
         st.markdown(Total_Records)
     with row2_2:
-        no_of_var_df = "🔢 No of Variables: " + str(36) + " Variables"
+        no_of_var_df = "🔢 No of Variables: " + str(36) 
         st.markdown(no_of_var_df)
+    with row2_3:
+        res_to_discount = "🤑Response Rate for Discount : " + str(27.34%) 
+        st.markdown(res_to_discount)
+    with row2_4:
+        red_rate = "🛍️ Redemption Rate: " + str(59.77%) 
+        st.markdown(red_rate)
+        
         
     #with row3_1:
      
