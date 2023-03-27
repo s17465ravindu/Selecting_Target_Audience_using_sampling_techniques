@@ -110,7 +110,6 @@ if file is not None:
             clusters.append(cluster2)
             clusters.append(cluster3)
 
-
             random.seed(42)
             selected_cluster = random.choice(clusters)
 
