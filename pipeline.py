@@ -49,7 +49,7 @@ if file is not None:
         Responded_to_discount_df = "👍 Responded to Discount: " + str(Responded_to_discount_in_df) + " Customers"
         st.markdown(Responded_to_discount_df)
         
-    with row3_1:
+    #with row3_1:
      
     #st.sidebar.title("Findings")
     #type_of_finding = st.sidebar.selectbox("Select one",('EDA', 'Clustering', 'Sampling Techniques'))   
