@@ -60,9 +60,10 @@ if file is not None:
            file_contents = f.read()
 
        st.write(file_contents)
-    else:
+    elif type_of_finding == 'Clustering':
        st.write('No MD files available for this option.')
     
+    elif type_of_finding == 'Sampling Techniques':
     
     agree = st.checkbox('Apply Sampling Techniques')
 
