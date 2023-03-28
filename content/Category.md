@@ -1,3 +1,0 @@
-## Category
-
-![](images/Category.png)
