@@ -36,7 +36,7 @@ if file is not None:
     type_of_finding = st.sidebar.selectbox("Select one",('-','EDA', 'Clustering', 'Sampling Techniques'))   
         
     if type_of_finding == '-':
-        st.subheader("🔔 Select a Option from the Dropdown menu in Sidebar")
+        st.subheader("🔔 Select an option from the dropdown menu in Sidebar")
     
     elif type_of_finding == 'EDA':
         
