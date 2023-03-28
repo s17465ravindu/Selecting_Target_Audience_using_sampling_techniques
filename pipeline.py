@@ -33,9 +33,12 @@ if file is not None:
     
         
     st.sidebar.title("Findings")
-    type_of_finding = st.sidebar.selectbox("Select one",('EDA', 'Clustering', 'Sampling Techniques'))   
+    type_of_finding = st.sidebar.selectbox("Select one",('-','EDA', 'Clustering', 'Sampling Techniques'))   
         
-    if type_of_finding == 'EDA':
+    if type_of_finding == '-':
+        st.subheader("🔔 Select a Option from the Dropdown menu in Sidebar")
+    
+    elif type_of_finding == 'EDA':
         
        st.subheader("General Information about Dataset")
        row2_spacer1, row2_1, row2_spacer2, row2_2, row2_spacer3, row2_3, row2_spacer4, row2_4, row2_spacer5   = st.columns((.2, 1.6, .2, 1.6, .2, 1.6, .2, 1.6, .2))
