@@ -194,7 +194,7 @@ if file is not None:
                best_techniques = what_is_best_t(result_table)
                for confidence_interval in best_techniques['Confidence Interval'].unique():
                    technique = best_techniques[best_techniques['Confidence Interval']==confidence_interval]['Sampling Technique'].values[0]
-                   #print(f"For {confidence_interval} confidence interval, the best technique is {technique}.")
-                   st.write(f"For {confidence_interval} confidence interval, the best technique is {technique}.")
+
+                   st.write(f"{confidence_interval} Confidence interval ---> The Best Technique: {technique}.")
 
 
