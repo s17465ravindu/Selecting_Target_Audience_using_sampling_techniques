@@ -163,18 +163,18 @@ if file is not None:
                df = pd.DataFrame(train_set, columns=['Sampling Technique','Confidence Interval','Sample Size', 'Absolute Error', 'Standard Error'])
                return df
             
-           def what_is_best_t(data,sample_sizes):
-               results = []
-               for sample_size, confidence_interval in sample_sizes:
-                   for technique in df['Sampling Technique'].unique():
-                       technique_df = df[df['Sampling Technique']==technique]
-                       std_dev = technique_df['Standard Error'].mean()
-                       absolute_error = std_dev * sample_size
-                       results.append({'Sampling Technique': technique, 'Confidence Interval': confidence_interval, 'Sample Size': sample_size, 'Absolute Error': absolute_error})
-               results_df = pd.DataFrame(results)
-               min_absolute_errors = results_df.groupby(['Confidence Interval', 'Sampling Technique'])['Absolute Error'].min().reset_index()
-               best_techniques = min_absolute_errors.groupby('Confidence Interval').apply(lambda x: x.loc[x['Absolute Error'].idxmin()]).reset_index(drop=True)
-               return best_techniques
+           #def what_is_best_t(data,sample_sizes):
+            #   results = []
+             #  for sample_size, confidence_interval in sample_sizes:
+              #     for technique in df['Sampling Technique'].unique():
+               #        technique_df = df[df['Sampling Technique']==technique]
+                #       std_dev = technique_df['Standard Error'].mean()
+                 #      absolute_error = std_dev * sample_size
+                  #     results.append({'Sampling Technique': technique, 'Confidence Interval': confidence_interval, 'Sample Size': sample_size, 'Absolute Error': absolute_error})
+               #results_df = pd.DataFrame(results)
+               #min_absolute_errors = results_df.groupby(['Confidence Interval', 'Sampling Technique'])['Absolute Error'].min().reset_index()
+               #best_techniques = min_absolute_errors.groupby('Confidence Interval').apply(lambda x: x.loc[x['Absolute Error'].idxmin()]).reset_index(drop=True)
+               #return best_techniques
 
            # Calculate the sample size for each confidence interval
            sample_sizes = []
@@ -200,6 +200,8 @@ if file is not None:
            with st.beta_expander("Show The Conclusion"):
                df = st_df1
                best_techniques = sampling_pipeline(df, sample_sizes)
-               st.write(best_techniques)
+               for confidence_interval in best_techniques['Confidence Interval'].unique():
+                   technique = best_techniques[best_techniques['Confidence Interval']==confidence_interval]['Sampling Technique'].values[0]
+                   print(f"For {confidence_interval} confidence interval, the best technique is {best_technique}.")
 
 
