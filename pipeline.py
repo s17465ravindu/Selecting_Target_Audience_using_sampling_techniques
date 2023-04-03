@@ -200,6 +200,6 @@ if file is not None:
            with st.beta_expander("Show The Conclusion"):
                df = st_df1
                best_techniques = sampling_pipeline(df, sample_sizes)
-               st.print(best_techniques)
+               st.write(best_techniques)
 
 
