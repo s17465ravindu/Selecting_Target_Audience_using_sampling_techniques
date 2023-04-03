@@ -75,9 +75,6 @@ if file is not None:
            st.image(img, caption=img_file_name)
        else:
            st.write("No corresponding image file found.")
-        
-    elif type_of_finding == 'Clustering':
-       st.write('No MD files available for this option.')
     
     elif type_of_finding == 'Sampling Techniques':
     
