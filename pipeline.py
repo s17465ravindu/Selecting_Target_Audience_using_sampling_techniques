@@ -163,7 +163,7 @@ if file is not None:
                df = pd.DataFrame(train_set, columns=['Sampling Technique','Confidence Interval','Sample Size', 'Absolute Error', 'Standard Error'])
                return df
             
-           def what_is_best_t(data,sample sizes):
+           def what_is_best_t(data,sample_sizes):
                results = []
                for sample_size, confidence_interval in sample_sizes:
                    for technique in df['Sampling Technique'].unique():
