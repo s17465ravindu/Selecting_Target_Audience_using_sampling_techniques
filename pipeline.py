@@ -191,17 +191,8 @@ if file is not None:
             # Create an empty container to hold the LaTeX output
             pass
         
-           with st.beta_expander("Show LaTeX Code"):
+           with st.beta_expander("Show The Conclusion"):
                # Create a collapsible section to show the LaTeX code
-               st.code(r"\begin{enumerate}" + "\n" +
-                       "\n".join([f"\\item {item}" for item in list_items]) + "\n" +
-                       r"\end{enumerate}", language="latex")
+               st.write([f"\\item {item}" for item in list_items])
 
-           with st.empty():
-               # Use the empty container to display the LaTeX output
-               st.latex(r"\begin{enumerate}" +
-                       "\n" +
-                       "\n".join([f"\\item {item}" for item in list_items]) +
-                       "\n" +
-                       r"\end{enumerate}")
 
