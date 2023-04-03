@@ -33,7 +33,7 @@ if file is not None:
     
         
     st.sidebar.title("Major Findings")
-    type_of_finding = st.sidebar.selectbox("Options",('-','EDA', 'Clustering', 'Sampling Techniques'))   
+    type_of_finding = st.sidebar.selectbox("Options",('-','EDA', 'Sampling Techniques'))   
         
     if type_of_finding == '-':
         st.subheader("🔔 Select an option from the dropdown menu in Sidebar")
