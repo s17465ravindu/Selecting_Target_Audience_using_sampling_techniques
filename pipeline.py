@@ -185,22 +185,23 @@ if file is not None:
            #st.write(result_table)
            st.table(result_table)
         
-           st.write("Here's a numbered list:")
+           list_items = ["item 1", "item 2", "item 3"]
            st.write("Here's a numbered list:")
            with st.empty():
             # Create an empty container to hold the LaTeX output
             pass
-
+        
            with st.beta_expander("Show LaTeX Code"):
-            # Create a collapsible section to show the LaTeX code
+               # Create a collapsible section to show the LaTeX code
                st.code(r"\begin{enumerate}" + "\n" +
                        "\n".join([f"\\item {item}" for item in list_items]) + "\n" +
                        r"\end{enumerate}", language="latex")
 
            with st.empty():
-            # Use the empty container to display the LaTeX output
+               # Use the empty container to display the LaTeX output
                st.latex(r"\begin{enumerate}" +
-                        "\n" +
-                        "\n".join([f"\\item {item}" for item in list_items]) +
-                        "\n" +
-                         r"\end{enumerate}")
+                       "\n" +
+                       "\n".join([f"\\item {item}" for item in list_items]) +
+                       "\n" +
+                       r"\end{enumerate}")
+
