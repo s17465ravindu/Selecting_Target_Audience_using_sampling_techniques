@@ -201,7 +201,7 @@ if file is not None:
                df = st_df1
                best_techniques = sampling_pipeline(df, sample_sizes)
                for confidence_interval in best_techniques['Confidence Interval'].unique():
-                   technique = best_techniques[best_techniques['Confidence Interval']==confidence_interval]['Sampling Technique'].values[0]
+                   technique = best_techniques[technique['Confidence Interval']==confidence_interval]['Sampling Technique'].values[0]
                    print(f"For {confidence_interval} confidence interval, the best technique is {best_technique}.")
 
 
