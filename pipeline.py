@@ -186,10 +186,6 @@ if file is not None:
            st.table(result_table)
         
            list_items = ["item 1", "item 2", "item 3"]
-           st.write("Here's a numbered list:")
-           with st.empty():
-            # Create an empty container to hold the LaTeX output
-            pass
         
            with st.beta_expander("Show The Conclusion"):
                # Create a collapsible section to show the LaTeX code
