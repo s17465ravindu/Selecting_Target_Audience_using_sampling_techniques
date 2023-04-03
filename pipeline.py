@@ -189,7 +189,7 @@ if file is not None:
            st.table(result_table)
         
         
-           with st.beta_expander("Show The Conclusion"):
+           with st.expander("Show The Conclusion"):
                df = st_df1
                best_techniques = what_is_best_t(result_table)
                for confidence_interval in best_techniques['Confidence Interval'].unique():
